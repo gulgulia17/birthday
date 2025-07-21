@@ -10,6 +10,11 @@ interface HobbyGamesProps {
   onBack: () => void
 }
 
+const getRandomImage = () => {
+  const imageNumber = Math.floor(Math.random() * 34) + 1001
+  return `/assets/images/${imageNumber}.jpg`
+}
+
 const games = [
   {
     id: "reading",
@@ -364,6 +369,11 @@ export default function HobbyGames({ onComplete, onBack }: HobbyGamesProps) {
                 <Heart className="mr-2" size={20} />
                 Continue to Surprise!
               </Button>
+            </div>
+          )}
+          {completedGames.length === games.length && (
+            <div className="text-center mt-6">
+              <img src={getRandomImage() || "/placeholder.svg"} alt="Surprise!" className="rounded-lg shadow-md" />
             </div>
           )}
         </div>

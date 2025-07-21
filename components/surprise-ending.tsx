@@ -1,7 +1,7 @@
 "use client"
 
 import { useState, useEffect } from "react"
-import { RotateCcw } from "lucide-react"
+import { RotateCcw, Heart } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Card } from "@/components/ui/card"
 
@@ -14,9 +14,10 @@ interface SurpriseEndingProps {
     totalScore: number
   }
   onRestart: () => void
+  onNavigate?: (scene: string) => void
 }
 
-export default function SurpriseEnding({ gameProgress, onRestart }: SurpriseEndingProps) {
+export default function SurpriseEnding({ gameProgress, onRestart, onNavigate }: SurpriseEndingProps) {
   const [showFireworks, setShowFireworks] = useState(false)
   const [showMessage, setShowMessage] = useState(false)
   const [currentMessageIndex, setCurrentMessageIndex] = useState(0)
@@ -162,6 +163,10 @@ export default function SurpriseEnding({ gameProgress, onRestart }: SurpriseEndi
           {currentMessageIndex === birthdayMessages.length - 1 && (
             <div className="space-y-4">
               <div className="flex justify-center gap-4">
+                <Button onClick={() => onNavigate("gallery")} className="bg-pink-500 hover:bg-pink-600 text-white">
+                  <Heart className="mr-2" size={16} />
+                  View All Our Photos
+                </Button>
                 <Button
                   onClick={onRestart}
                   variant="outline"

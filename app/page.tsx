@@ -8,6 +8,7 @@ import PersonalizedQuiz from "@/components/personalized-quiz"
 import MemoryLane from "@/components/memory-lane"
 import HobbyGames from "@/components/hobby-games"
 import SurpriseEnding from "@/components/surprise-ending"
+import PhotoGallery from "@/components/photo-gallery"
 
 export default function MitaliBirthdayAdventure() {
   const [currentScene, setCurrentScene] = useState("landing")
@@ -91,7 +92,17 @@ export default function MitaliBirthdayAdventure() {
           />
         )
       case "ending":
-        return <SurpriseEnding gameProgress={gameProgress} onRestart={() => handleSceneChange("landing")} />
+        return (
+          <SurpriseEnding
+            gameProgress={gameProgress}
+            onRestart={() => handleSceneChange("landing")}
+            onNavigate={handleSceneChange}
+          />
+        )
+      case "gallery":
+        return <PhotoGallery onBack={() => handleSceneChange("ending")} onNavigate={handleSceneChange} onRestart={function (): void {
+          throw new Error("Function not implemented.")
+        } } />
       default:
         return <LandingPage onStart={() => handleSceneChange("adventure")} />
     }
@@ -99,6 +110,7 @@ export default function MitaliBirthdayAdventure() {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-pink-100 via-rose-50 to-pink-200 relative overflow-hidden">
+      
       {/* Background decorative elements */}
       <div className="fixed inset-0 pointer-events-none">
         <div className="absolute top-10 left-10 text-pink-300 opacity-30">
@@ -114,9 +126,26 @@ export default function MitaliBirthdayAdventure() {
           <Gift size={26} />
         </div>
       </div>
+<main className="relative z-10">
+      {/* Scene Selector (for quick testing) */}
+<div className="absolute top-4 right-4 z-20">
+  <select
+    className="p-2 rounded bg-pink-100 border border-pink-300 text-pink-700"
+    value={currentScene}
+    onChange={(e) => handleSceneChange(e.target.value)}
+  >
+    <option value="landing">Landing</option>
+    <option value="adventure">Adventure</option>
+    <option value="quiz">Quiz</option>
+    <option value="memory">Memory Lane</option>
+    <option value="hobbies">Hobby Games</option>
+    <option value="ending">Surprise Ending</option>
+    <option value="gallery">Photo Gallery</option>
+  </select>
+</div>
 
       {/* Main content */}
-      <main className="relative z-10">{renderCurrentScene()}</main>
+      {renderCurrentScene()}</main>
 
       {/* Global styles for animations */}
       <style jsx global>{`

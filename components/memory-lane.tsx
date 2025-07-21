@@ -13,63 +13,73 @@ interface MemoryLaneProps {
 const memories = [
   {
     id: 1,
-    title: "First Bike Ride Together",
-    date: "A pretty evening in 2023",
-    image: "/assets/images/1019.jpg?height=300&width=400",
+    title: "Our Beautiful Beginning",
+    date: "The start of our journey",
+    image: "/assets/images/1002.jpg",
     caption:
-      "The rain couldn't dampen our spirits that day. Every drop felt like a blessing as we rode through the city, laughing and creating our first magical memory together.",
-    location: "City Streets",
-    emoji: "🌧️",
+      "Every love story has a beginning, but ours felt like magic from the very first moment. Looking back at where we started fills my heart with so much joy.",
+    location: "Where it all began",
+    emoji: "💕",
   },
   {
     id: 2,
-    title: "Jaipur Adventure",
-    date: "Summer 2025",
-    image: "/assets/images/1029.jpg?height=300&width=400",
+    title: "Growing Closer Every Day",
+    date: "Early days together",
+    image: "/assets/images/1005.jpg",
     caption:
-      "Exploring the Pink City with my pink princess! Every corner of Jaipur seemed to reflect your beautiful personality. Hand in hand, we discovered not just the city, but more of each other.",
-    location: "Jaipur, Rajasthan",
-    emoji: "🏰",
+      "Each day brought us closer, each moment more precious than the last. Watching our bond strengthen was like watching a beautiful flower bloom.",
+    location: "In each other's hearts",
+    emoji: "🌸",
   },
   {
     id: 3,
-    title: "Cozy Café Moments",
-    date: "Multiple occasions",
-    image: "/assets/images/1012.jpg?height=300&width=400",
+    title: "Adventures and Laughter",
+    date: "Making memories",
+    image: "/assets/images/1010.jpg",
     caption:
-      "From morning coffees to evening desserts, every meal shared with you became a celebration. Your laughter was sweeter than any dessert on the menu.",
-    location: "Various Cafés",
-    emoji: "☕",
+      "From spontaneous adventures to quiet moments of laughter, every experience with you became a treasured memory in the story of us.",
+    location: "Everywhere together",
+    emoji: "😄",
   },
   {
     id: 4,
-    title: "Reading Sessions Together",
-    date: "Quiet afternoons",
-    image: "/assets/images/1006.jpg?height=300&width=400",
+    title: "Celebrating Special Moments",
+    date: "Milestones together",
+    image: "/assets/images/1018.jpg",
     caption:
-      "Sharing stories and dreams while you read your favorite books. Watching you get lost in different worlds while I got lost in watching you - pure magic.",
-    location: "Our Cozy Corner",
-    emoji: "📚",
+      "Every celebration became more meaningful with you by my side. Your joy became my joy, your happiness my greatest treasure.",
+    location: "Special occasions",
+    emoji: "🎉",
   },
   {
     id: 5,
-    title: "Dancing in the Rain",
-    date: "Monsoon memories",
-    image: "/assets/images/1003.jpg?height=300&width=400",
+    title: "Quiet Intimate Moments",
+    date: "Just the two of us",
+    image: "/assets/images/1014.jpg",
     caption:
-      "When the music in your heart met the rhythm of the rain, we danced like nobody was watching. Those spontaneous moments are my favorite kind of magic.",
-    location: "Under the Sky",
-    emoji: "💃",
+      "Sometimes the most beautiful moments are the quiet ones - just us, lost in conversation, lost in each other's eyes, lost in love.",
+    location: "Our private world",
+    emoji: "💫",
   },
   {
     id: 6,
-    title: "Singing Together",
-    date: "Musical moments",
-    image: "/assets/images/1034.jpg?height=300&width=400",
+    title: "Building Our Future",
+    date: "Dreams coming true",
+    image: "/assets/images/1031.jpg",
     caption:
-      "Your voice is my favorite melody. Whether humming softly or singing your heart out, every note you sing becomes a part of my favorite symphony.",
-    location: "Everywhere",
-    emoji: "🎤",
+      "With every passing day, we're not just making memories - we're building a future filled with love, dreams, and endless possibilities together.",
+    location: "Towards tomorrow",
+    emoji: "🌟",
+  },
+  {
+    id: 7,
+    title: "Recent Beautiful Moments",
+    date: "Our latest chapter",
+    image: "/assets/images/1034.jpg",
+    caption:
+      "Our most recent adventures remind me that our love story is still being written, and every new chapter is more beautiful than the last.",
+    location: "Here and now",
+    emoji: "✨",
   },
 ]
 
@@ -146,7 +156,7 @@ export default function MemoryLane({ onComplete, onBack }: MemoryLaneProps) {
               <img
                 src={memory.image || "/assets/images/1005.jpg"}
                 alt={memory.title}
-                className="w-full h-64 object-cover rounded-lg shadow-lg transition-transform duration-300 group-hover:scale-105"
+                className="w-full h-64 object-fill rounded-lg shadow-lg transition-transform duration-300 group-hover:scale-105"
               />
 
               {/* Sparkle overlay */}

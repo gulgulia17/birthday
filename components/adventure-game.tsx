@@ -38,7 +38,7 @@ const scenes = [
   {
     id: 3,
     title: "Memorable Food Dates",
-    image: "/assets/images/1027.jpg?height=300&width=400",
+    image: "/assets/images/1012.jpg?height=300&width=400",
     description: "From cozy cafés to street food adventures, every meal tasted better when shared with you, my love.",
     hiddenMessage: "You're the sweetest thing on every menu 🍰",
     clickableItems: [

@@ -12,10 +12,15 @@ interface LandingPageProps {
 export default function LandingPage({ onStart }: LandingPageProps) {
   const [showContent, setShowContent] = useState(false)
   const [petals, setPetals] = useState<Array<{ id: number; left: number; delay: number }>>([])
+  const [backgroundImage, setBackgroundImage] = useState("")
 
   useEffect(() => {
     // Fade in content
     const timer = setTimeout(() => setShowContent(true), 500)
+
+    // Set a random background image from our collection
+    const randomImageNumber = Math.floor(Math.random() * 34) + 1001
+    setBackgroundImage(`/assets/images/${randomImageNumber}.jpg`)
 
     // Create floating petals
     const petalArray = Array.from({ length: 15 }, (_, i) => ({
@@ -30,6 +35,15 @@ export default function LandingPage({ onStart }: LandingPageProps) {
 
   return (
     <div className="min-h-screen flex items-center justify-center p-4 relative">
+      {/* Background image with overlay */}
+      {backgroundImage && (
+        <div
+          className="absolute inset-0 bg-cover bg-center opacity-20"
+          style={{ backgroundImage: `url(${backgroundImage})` }}
+        />
+      )}
+      <div className="absolute inset-0 bg-gradient-to-br from-pink-100/80 via-rose-50/80 to-pink-200/80" />
+
       {/* Floating petals background */}
       <div className="floating-petals">
         {petals.map((petal) => (
@@ -45,7 +59,7 @@ export default function LandingPage({ onStart }: LandingPageProps) {
       </div>
 
       <Card
-        className={`max-w-md w-full bg-white/90 backdrop-blur-sm border-pink-200 shadow-2xl transition-all duration-1000 ${showContent ? "opacity-100 scale-100" : "opacity-0 scale-95"}`}
+        className={`max-w-md w-full bg-white/95 backdrop-blur-sm border-pink-200 shadow-2xl transition-all duration-1000 relative z-10 ${showContent ? "opacity-100 scale-100" : "opacity-0 scale-95"}`}
       >
         <div className="p-8 text-center space-y-6">
           {/* Animated heart logo */}

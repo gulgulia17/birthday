@@ -126,48 +126,54 @@ export default function PersonalizedQuiz({ onComplete, onBack }: PersonalizedQui
               </div>
             </div>
 
-            <Card className="p-6 bg-pink-50 border-pink-200">
-              <h3 className="text-xl font-semibold text-pink-700 mb-4 text-center">{question.question}</h3>
+            <Card className="p-6 bg-pink-50 border-pink-200 relative overflow-hidden">
+              <div
+                className="absolute inset-0 opacity-10 bg-cover bg-center"
+                style={{ backgroundImage: `url(/assets/images/${1003 + currentQuestion}.jpg)` }}
+              />
+              <div className="relative z-10">
+                <h3 className="text-xl font-semibold text-pink-700 mb-4 text-center">{question.question}</h3>
 
-              <div className="space-y-3">
-                {question.options.map((option, index) => (
-                  <button
-                    key={index}
-                    onClick={() => handleAnswerSelect(index)}
-                    disabled={showResult}
-                    className={`w-full p-4 text-left rounded-lg border-2 transition-all duration-200 ${
-                      selectedAnswer === index
-                        ? showResult
-                          ? index === question.correct
+                <div className="space-y-3">
+                  {question.options.map((option, index) => (
+                    <button
+                      key={index}
+                      onClick={() => handleAnswerSelect(index)}
+                      disabled={showResult}
+                      className={`w-full p-4 text-left rounded-lg border-2 transition-all duration-200 ${
+                        selectedAnswer === index
+                          ? showResult
+                            ? index === question.correct
+                              ? "border-green-500 bg-green-50 text-green-700"
+                              : "border-red-500 bg-red-50 text-red-700"
+                            : "border-pink-500 bg-pink-100 text-pink-700"
+                          : showResult && index === question.correct
                             ? "border-green-500 bg-green-50 text-green-700"
-                            : "border-red-500 bg-red-50 text-red-700"
-                          : "border-pink-500 bg-pink-100 text-pink-700"
-                        : showResult && index === question.correct
-                          ? "border-green-500 bg-green-50 text-green-700"
-                          : "border-pink-200 bg-white hover:border-pink-300 hover:bg-pink-50"
-                    }`}
-                  >
-                    <div className="flex items-center justify-between">
-                      <span className="font-medium">{option}</span>
-                      {showResult && (
-                        <div>
-                          {index === question.correct ? (
-                            <Check className="text-green-600" size={20} />
-                          ) : selectedAnswer === index ? (
-                            <X className="text-red-600" size={20} />
-                          ) : null}
-                        </div>
-                      )}
-                    </div>
-                  </button>
-                ))}
-              </div>
-
-              {showResult && (
-                <div className="mt-4 p-4 bg-pink-100 rounded-lg border border-pink-200 animate-in slide-in-from-bottom duration-500">
-                  <p className="text-pink-700 font-medium text-center">{question.explanation}</p>
+                            : "border-pink-200 bg-white hover:border-pink-300 hover:bg-pink-50"
+                      }`}
+                    >
+                      <div className="flex items-center justify-between">
+                        <span className="font-medium">{option}</span>
+                        {showResult && (
+                          <div>
+                            {index === question.correct ? (
+                              <Check className="text-green-600" size={20} />
+                            ) : selectedAnswer === index ? (
+                              <X className="text-red-600" size={20} />
+                            ) : null}
+                          </div>
+                        )}
+                      </div>
+                    </button>
+                  ))}
                 </div>
-              )}
+
+                {showResult && (
+                  <div className="mt-4 p-4 bg-pink-100 rounded-lg border border-pink-200 animate-in slide-in-from-bottom duration-500">
+                    <p className="text-pink-700 font-medium text-center">{question.explanation}</p>
+                  </div>
+                )}
+              </div>
             </Card>
 
             {!showResult && (
