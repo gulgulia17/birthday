@@ -1,7 +1,7 @@
 "use client"
 
 import { useState, useEffect } from "react"
-import { RotateCcw, Heart } from "lucide-react"
+import { RotateCcw, Heart, Search, Sparkles } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Card } from "@/components/ui/card"
 
@@ -162,15 +162,35 @@ export default function SurpriseEnding({ gameProgress, onRestart, onNavigate }: 
           {/* Action buttons */}
           {currentMessageIndex === birthdayMessages.length - 1 && (
             <div className="space-y-4">
-              <div className="flex justify-center gap-4">
-                <Button onClick={() => onNavigate("gallery")} className="bg-pink-500 hover:bg-pink-600 text-white">
+              <div className="flex flex-col sm:flex-row justify-center gap-2 sm:gap-4">
+                <Button
+                  onClick={() => onNavigate("gallery")}
+                  className="bg-pink-500 hover:bg-pink-600 text-white w-full sm:w-auto"
+                >
                   <Heart className="mr-2" size={16} />
-                  View All Our Photos
+                  View All Photos
+                </Button>
+                <Button
+                  onClick={() => onNavigate("collage")}
+                  className="bg-pink-500 hover:bg-pink-600 text-white w-full sm:w-auto"
+                >
+                  <Sparkles className="mr-2" size={16} />
+                  Memory Collage
+                </Button>
+              </div>
+              <div className="flex flex-col sm:flex-row justify-center gap-2 sm:gap-4">
+                <Button
+                  onClick={() => onNavigate("search")}
+                  variant="outline"
+                  className="border-pink-300 text-pink-600 hover:bg-pink-50 bg-transparent w-full sm:w-auto"
+                >
+                  <Search className="mr-2" size={16} />
+                  Search Memories
                 </Button>
                 <Button
                   onClick={onRestart}
                   variant="outline"
-                  className="border-pink-300 text-pink-600 hover:bg-pink-50 bg-transparent"
+                  className="border-pink-300 text-pink-600 hover:bg-pink-50 bg-transparent w-full sm:w-auto"
                 >
                   <RotateCcw className="mr-2" size={16} />
                   Replay Adventure

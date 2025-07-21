@@ -43,7 +43,7 @@ export default function MemoryCollage({ onBack }: MemoryCollageProps) {
         </div>
 
         {/* Collage Grid */}
-        <div className="relative h-screen max-h-[600px] bg-white/90 backdrop-blur-sm rounded-2xl shadow-2xl border-2 border-pink-200 overflow-hidden">
+        <div className="relative h-[400px] sm:h-[500px] md:h-[600px] bg-white/90 backdrop-blur-sm rounded-2xl shadow-2xl border-2 border-pink-200 overflow-hidden">
           {collageImages.map((image, index) => (
             <div
               key={index}
@@ -51,8 +51,8 @@ export default function MemoryCollage({ onBack }: MemoryCollageProps) {
                 hoveredImage === image.src ? "z-20 scale-110" : "z-10"
               }`}
               style={{
-                width: `${Math.random() * 200 + 150}px`,
-                height: `${Math.random() * 200 + 150}px`,
+                width: `${Math.random() * 120 + 100}px`,
+                height: `${Math.random() * 120 + 100}px`,
                 top: `${Math.random() * 60 + 10}%`,
                 left: `${Math.random() * 70 + 10}%`,
                 transform: `rotate(${Math.random() * 30 - 15}deg)`,
@@ -68,11 +68,11 @@ export default function MemoryCollage({ onBack }: MemoryCollageProps) {
                   className="w-full h-full object-cover rounded"
                 />
                 <div className="absolute -bottom-2 -right-2 bg-pink-500 text-white p-1 rounded-full">
-                  <Heart size={12} />
+                  <Heart size={10} />
                 </div>
               </Card>
               {hoveredImage === image.src && (
-                <div className="absolute -bottom-8 left-1/2 transform -translate-x-1/2 bg-pink-600 text-white px-2 py-1 rounded text-sm font-medium">
+                <div className="absolute -bottom-8 left-1/2 transform -translate-x-1/2 bg-pink-600 text-white px-2 py-1 rounded text-xs font-medium whitespace-nowrap">
                   {image.title}
                 </div>
               )}
@@ -87,7 +87,7 @@ export default function MemoryCollage({ onBack }: MemoryCollageProps) {
               style={{
                 top: `${Math.random() * 100}%`,
                 left: `${Math.random() * 100}%`,
-                fontSize: `${Math.random() * 20 + 10}px`,
+                fontSize: `${Math.random() * 15 + 8}px`,
                 animationDelay: `${Math.random() * 3}s`,
               }}
             >
@@ -99,17 +99,17 @@ export default function MemoryCollage({ onBack }: MemoryCollageProps) {
         {/* Selected image modal */}
         {selectedImage && (
           <div className="fixed inset-0 bg-black/80 z-50 flex items-center justify-center p-4">
-            <div className="relative max-w-4xl max-h-full">
+            <div className="relative max-w-4xl max-h-full w-full">
               <button
                 onClick={() => setSelectedImage(null)}
-                className="absolute -top-12 right-0 text-white hover:text-pink-300 text-xl"
+                className="absolute -top-12 right-0 text-white hover:text-pink-300 text-xl z-10"
               >
                 ✕
               </button>
               <img
                 src={selectedImage || "/placeholder.svg"}
                 alt="Selected memory"
-                className="max-w-full max-h-full object-contain rounded-lg shadow-2xl"
+                className="max-w-full max-h-[80vh] object-contain rounded-lg shadow-2xl mx-auto block"
               />
             </div>
           </div>
@@ -117,9 +117,23 @@ export default function MemoryCollage({ onBack }: MemoryCollageProps) {
 
         {/* Instructions */}
         <div className="text-center mt-6">
-          <p className="text-pink-600 text-sm">
-            Hover over photos to see titles • Click to view full size • Each photo tells our story 💕
+          <p className="text-pink-600 text-sm px-4">
+            <span className="hidden sm:inline">Hover over photos to see titles • </span>
+            <span className="sm:hidden">Tap photos to see titles • </span>
+            Click to view full size • Each photo tells our story 💕
           </p>
+        </div>
+
+        {/* Navigation buttons */}
+        <div className="flex flex-col sm:flex-row justify-center gap-2 sm:gap-4 mt-6">
+          <Button
+            onClick={() => onBack()}
+            variant="outline"
+            className="border-pink-300 text-pink-600 hover:bg-pink-50 bg-transparent w-full sm:w-auto"
+          >
+            <Heart className="mr-2" size={16} />
+            Back to Gallery
+          </Button>
         </div>
       </div>
     </div>

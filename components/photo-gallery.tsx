@@ -1,7 +1,7 @@
 "use client"
 
 import { useState } from "react"
-import { ArrowLeft, ArrowRight, Heart, X, RotateCcw } from "lucide-react"
+import { ArrowLeft, ArrowRight, Heart, X, RotateCcw, Search } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Card } from "@/components/ui/card"
 
@@ -94,13 +94,13 @@ export default function PhotoGallery({ onBack, onNavigate, onRestart }: PhotoGal
             <img
               src={currentPhoto.src || "/placeholder.svg"}
               alt={currentPhoto.title}
-              className="w-full h-96 object-cover cursor-pointer"
+              className="w-full h-64 sm:h-80 md:h-96 object-cover cursor-pointer"
               onClick={() => setIsFullscreen(true)}
             />
             <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent" />
             <div className="absolute bottom-4 left-4 text-white">
-              <h2 className="text-2xl font-bold font-serif">{currentPhoto.title}</h2>
-              <p className="text-sm opacity-90">{currentPhoto.description}</p>
+              <h2 className="text-lg sm:text-xl md:text-2xl font-bold font-serif">{currentPhoto.title}</h2>
+              <p className="text-xs sm:text-sm opacity-90">{currentPhoto.description}</p>
             </div>
             <button
               onClick={() => setIsFullscreen(true)}
@@ -112,11 +112,11 @@ export default function PhotoGallery({ onBack, onNavigate, onRestart }: PhotoGal
         </Card>
 
         {/* Navigation controls */}
-        <div className="flex justify-between items-center mb-6">
+        <div className="flex flex-col sm:flex-row justify-between items-center mb-6 gap-4">
           <Button
             onClick={handlePrev}
             variant="outline"
-            className="border-pink-300 text-pink-600 hover:bg-pink-50 bg-transparent"
+            className="border-pink-300 text-pink-600 hover:bg-pink-50 bg-transparent w-full sm:w-auto"
           >
             <ArrowLeft className="mr-2" size={16} />
             Previous
@@ -126,8 +126,8 @@ export default function PhotoGallery({ onBack, onNavigate, onRestart }: PhotoGal
             <p className="text-pink-600 text-sm mb-2">
               Viewed: {viewedPhotos.length} / {allPhotos.length}
             </p>
-            <div className="flex gap-1">
-              {allPhotos.slice(0, 10).map((_, index) => (
+            <div className="flex gap-1 justify-center">
+              {allPhotos.slice(0, Math.min(10, allPhotos.length)).map((_, index) => (
                 <div
                   key={index}
                   className={`w-2 h-2 rounded-full ${
@@ -143,25 +143,33 @@ export default function PhotoGallery({ onBack, onNavigate, onRestart }: PhotoGal
             </div>
           </div>
 
-          <Button onClick={handleNext} className="bg-pink-500 hover:bg-pink-600 text-white">
+          <Button onClick={handleNext} className="bg-pink-500 hover:bg-pink-600 text-white w-full sm:w-auto">
             Next
             <ArrowRight className="ml-2" size={16} />
           </Button>
         </div>
 
-        <div className="flex justify-center gap-4 mb-6">
+        <div className="flex flex-col sm:flex-row justify-center gap-2 sm:gap-4 mb-6">
           <Button
             onClick={() => onNavigate && onNavigate("collage")}
             variant="outline"
-            className="border-pink-300 text-pink-600 hover:bg-pink-50 bg-transparent"
+            className="border-pink-300 text-pink-600 hover:bg-pink-50 bg-transparent w-full sm:w-auto"
           >
             <Heart className="mr-2" size={16} />
             Memory Collage
           </Button>
           <Button
+            onClick={() => onNavigate && onNavigate("search")}
+            variant="outline"
+            className="border-pink-300 text-pink-600 hover:bg-pink-50 bg-transparent w-full sm:w-auto"
+          >
+            <Search className="mr-2" size={16} />
+            Search Memories
+          </Button>
+          <Button
             onClick={onRestart}
             variant="outline"
-            className="border-pink-300 text-pink-600 hover:bg-pink-50 bg-transparent"
+            className="border-pink-300 text-pink-600 hover:bg-pink-50 bg-transparent w-full sm:w-auto"
           >
             <RotateCcw className="mr-2" size={16} />
             Replay Adventure
@@ -171,7 +179,7 @@ export default function PhotoGallery({ onBack, onNavigate, onRestart }: PhotoGal
         {/* Thumbnail grid */}
         <Card className="p-4 bg-white/90 backdrop-blur-sm border-pink-200">
           <h3 className="text-lg font-semibold text-pink-700 mb-4">All Our Memories</h3>
-          <div className="grid grid-cols-6 md:grid-cols-8 lg:grid-cols-10 gap-2">
+          <div className="grid grid-cols-4 sm:grid-cols-6 md:grid-cols-8 lg:grid-cols-10 xl:grid-cols-12 gap-2">
             {allPhotos.map((photo, index) => (
               <button
                 key={photo.id}
@@ -187,7 +195,7 @@ export default function PhotoGallery({ onBack, onNavigate, onRestart }: PhotoGal
                 <img src={photo.src || "/placeholder.svg"} alt={photo.title} className="w-full h-full object-cover" />
                 {viewedPhotos.includes(index) && (
                   <div className="absolute top-1 right-1">
-                    <Heart className="text-pink-500 fill-current" size={12} />
+                    <Heart className="text-pink-500 fill-current" size={10} />
                   </div>
                 )}
               </button>

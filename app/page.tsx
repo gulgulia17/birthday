@@ -9,6 +9,8 @@ import MemoryLane from "@/components/memory-lane"
 import HobbyGames from "@/components/hobby-games"
 import SurpriseEnding from "@/components/surprise-ending"
 import PhotoGallery from "@/components/photo-gallery"
+import ImageSearch from "@/components/image-search"
+import MemoryCollage from "@/components/memory-collage"
 
 export default function MitaliBirthdayAdventure() {
   const [currentScene, setCurrentScene] = useState("landing")
@@ -73,7 +75,9 @@ export default function MitaliBirthdayAdventure() {
       case "quiz":
         return (
           <PersonalizedQuiz
-            onComplete={(score) => handleSceneChange("memory", { quizComplete: true, totalScore: score })}
+            onComplete={(score) =>
+              handleSceneChange("memory", { quizComplete: true, totalScore: score })
+            }
             onBack={() => handleSceneChange("adventure")}
           />
         )
@@ -100,9 +104,17 @@ export default function MitaliBirthdayAdventure() {
           />
         )
       case "gallery":
-        return <PhotoGallery onBack={() => handleSceneChange("ending")} onNavigate={handleSceneChange} onRestart={function (): void {
-          throw new Error("Function not implemented.")
-        } } />
+        return (
+          <PhotoGallery
+            onBack={() => handleSceneChange("ending")}
+            onNavigate={handleSceneChange}
+            onRestart={() => handleSceneChange("landing")}
+          />
+        )
+      case "search":
+        return <ImageSearch onBack={() => handleSceneChange("gallery")} />
+      case "collage":
+        return <MemoryCollage onBack={() => handleSceneChange("gallery")} />
       default:
         return <LandingPage onStart={() => handleSceneChange("adventure")} />
     }
@@ -110,7 +122,6 @@ export default function MitaliBirthdayAdventure() {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-pink-100 via-rose-50 to-pink-200 relative overflow-hidden">
-      
       {/* Background decorative elements */}
       <div className="fixed inset-0 pointer-events-none">
         <div className="absolute top-10 left-10 text-pink-300 opacity-30">
@@ -126,26 +137,28 @@ export default function MitaliBirthdayAdventure() {
           <Gift size={26} />
         </div>
       </div>
-<main className="relative z-10">
-      {/* Scene Selector (for quick testing) */}
-<div className="absolute top-4 right-4 z-20">
-  <select
-    className="p-2 rounded bg-pink-100 border border-pink-300 text-pink-700"
-    value={currentScene}
-    onChange={(e) => handleSceneChange(e.target.value)}
-  >
-    <option value="landing">Landing</option>
-    <option value="adventure">Adventure</option>
-    <option value="quiz">Quiz</option>
-    <option value="memory">Memory Lane</option>
-    <option value="hobbies">Hobby Games</option>
-    <option value="ending">Surprise Ending</option>
-    <option value="gallery">Photo Gallery</option>
-  </select>
-</div>
+
+      {/* Scene Selector */}
+      <div className="fixed bottom-4 left-1/2 transform -translate-x-1/2 z-50 w-11/12 max-w-sm">
+        <select
+          className="w-full p-3 rounded-lg bg-white/80 backdrop-blur border border-pink-300 text-pink-700 shadow-lg focus:outline-none focus:ring focus:ring-pink-400"
+          value={currentScene}
+          onChange={(e) => handleSceneChange(e.target.value)}
+        >
+          <option value="landing">🌸 Landing</option>
+          <option value="adventure">🏕️ Adventure</option>
+          <option value="quiz">📝 Quiz</option>
+          <option value="memory">📸 Memory Lane</option>
+          <option value="hobbies">🎨 Hobby Games</option>
+          <option value="ending">🎁 Surprise Ending</option>
+          <option value="gallery">🖼️ Photo Gallery</option>
+          <option value="search">🔍 Search</option>
+          <option value="collage">🖼️ Collage</option>
+        </select>
+      </div>
 
       {/* Main content */}
-      {renderCurrentScene()}</main>
+      <main className="relative z-10">{renderCurrentScene()}</main>
 
       {/* Global styles for animations */}
       <style jsx global>{`
@@ -159,25 +172,37 @@ export default function MitaliBirthdayAdventure() {
             opacity: 0;
           }
         }
-        
+
         @keyframes sparkle {
-          0%, 100% { opacity: 0.3; transform: scale(1); }
-          50% { opacity: 1; transform: scale(1.2); }
+          0%,
+          100% {
+            opacity: 0.3;
+            transform: scale(1);
+          }
+          50% {
+            opacity: 1;
+            transform: scale(1.2);
+          }
         }
-        
+
         @keyframes heartbeat {
-          0%, 100% { transform: scale(1); }
-          50% { transform: scale(1.1); }
+          0%,
+          100% {
+            transform: scale(1);
+          }
+          50% {
+            transform: scale(1.1);
+          }
         }
-        
+
         .sparkle-animation {
           animation: sparkle 2s ease-in-out infinite;
         }
-        
+
         .heartbeat-animation {
           animation: heartbeat 1.5s ease-in-out infinite;
         }
-        
+
         .floating-petals {
           position: absolute;
           width: 100%;
@@ -185,7 +210,7 @@ export default function MitaliBirthdayAdventure() {
           overflow: hidden;
           pointer-events: none;
         }
-        
+
         .petal {
           position: absolute;
           width: 10px;
@@ -194,7 +219,7 @@ export default function MitaliBirthdayAdventure() {
           border-radius: 50% 0 50% 0;
           animation: fall 8s linear infinite;
         }
-        
+
         @keyframes fall {
           0% {
             transform: translateY(-100vh) rotate(0deg);
