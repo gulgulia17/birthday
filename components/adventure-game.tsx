@@ -14,7 +14,7 @@ const scenes = [
   {
     id: 1,
     title: "Romantic Bike Rides in the Rain",
-    image: "/placeholder.svg?height=300&width=400",
+    image: "/assets/images/1003.jpg?height=300&width=400",
     description:
       "Remember our magical rides through the rain, Mitali? Every drop felt like a blessing when I was with you.",
     hiddenMessage: "You're my favorite adventure in every weather 💕",
@@ -26,7 +26,7 @@ const scenes = [
   {
     id: 2,
     title: "Jaipur Wandering Adventures",
-    image: "/placeholder.svg?height=300&width=400",
+    image: "/assets/images/1027.jpg?height=300&width=400",
     description:
       "Those endless walks through Jaipur's pink streets, just like your favorite color! Every corner held a new memory with you.",
     hiddenMessage: "You make every city feel like home 🏰",
@@ -38,7 +38,7 @@ const scenes = [
   {
     id: 3,
     title: "Memorable Food Dates",
-    image: "/placeholder.svg?height=300&width=400",
+    image: "/assets/images/1027.jpg?height=300&width=400",
     description: "From cozy cafés to street food adventures, every meal tasted better when shared with you, my love.",
     hiddenMessage: "You're the sweetest thing on every menu 🍰",
     clickableItems: [
@@ -103,7 +103,7 @@ export default function AdventureGame({ onComplete, onBack }: AdventureGameProps
             {/* Interactive image */}
             <div className="relative group">
               <img
-                src={scene.image || "/placeholder.svg"}
+                src={scene.image || "/assets/images/1001.jpg"}
                 alt={scene.title}
                 className="w-full h-64 object-cover rounded-lg shadow-md"
               />

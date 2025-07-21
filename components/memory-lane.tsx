@@ -14,8 +14,8 @@ const memories = [
   {
     id: 1,
     title: "First Bike Ride Together",
-    date: "A rainy evening in 2023",
-    image: "/placeholder.svg?height=300&width=400",
+    date: "A pretty evening in 2023",
+    image: "/assets/images/1019.jpg?height=300&width=400",
     caption:
       "The rain couldn't dampen our spirits that day. Every drop felt like a blessing as we rode through the city, laughing and creating our first magical memory together.",
     location: "City Streets",
@@ -24,8 +24,8 @@ const memories = [
   {
     id: 2,
     title: "Jaipur Adventure",
-    date: "Summer 2023",
-    image: "/placeholder.svg?height=300&width=400",
+    date: "Summer 2025",
+    image: "/assets/images/1029.jpg?height=300&width=400",
     caption:
       "Exploring the Pink City with my pink princess! Every corner of Jaipur seemed to reflect your beautiful personality. Hand in hand, we discovered not just the city, but more of each other.",
     location: "Jaipur, Rajasthan",
@@ -35,7 +35,7 @@ const memories = [
     id: 3,
     title: "Cozy Café Moments",
     date: "Multiple occasions",
-    image: "/placeholder.svg?height=300&width=400",
+    image: "/assets/images/1012.jpg?height=300&width=400",
     caption:
       "From morning coffees to evening desserts, every meal shared with you became a celebration. Your laughter was sweeter than any dessert on the menu.",
     location: "Various Cafés",
@@ -45,7 +45,7 @@ const memories = [
     id: 4,
     title: "Reading Sessions Together",
     date: "Quiet afternoons",
-    image: "/placeholder.svg?height=300&width=400",
+    image: "/assets/images/1006.jpg?height=300&width=400",
     caption:
       "Sharing stories and dreams while you read your favorite books. Watching you get lost in different worlds while I got lost in watching you - pure magic.",
     location: "Our Cozy Corner",
@@ -55,7 +55,7 @@ const memories = [
     id: 5,
     title: "Dancing in the Rain",
     date: "Monsoon memories",
-    image: "/placeholder.svg?height=300&width=400",
+    image: "/assets/images/1003.jpg?height=300&width=400",
     caption:
       "When the music in your heart met the rhythm of the rain, we danced like nobody was watching. Those spontaneous moments are my favorite kind of magic.",
     location: "Under the Sky",
@@ -65,7 +65,7 @@ const memories = [
     id: 6,
     title: "Singing Together",
     date: "Musical moments",
-    image: "/placeholder.svg?height=300&width=400",
+    image: "/assets/images/1034.jpg?height=300&width=400",
     caption:
       "Your voice is my favorite melody. Whether humming softly or singing your heart out, every note you sing becomes a part of my favorite symphony.",
     location: "Everywhere",
@@ -144,7 +144,7 @@ export default function MemoryLane({ onComplete, onBack }: MemoryLaneProps) {
             {/* Interactive photo */}
             <div className="relative group cursor-pointer" onClick={handleImageClick}>
               <img
-                src={memory.image || "/placeholder.svg"}
+                src={memory.image || "/assets/images/1005.jpg"}
                 alt={memory.title}
                 className="w-full h-64 object-cover rounded-lg shadow-lg transition-transform duration-300 group-hover:scale-105"
               />
